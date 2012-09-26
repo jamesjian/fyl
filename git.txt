@@ -34,3 +34,12 @@ git fetch origin
 
 git push origin master
 user/pass
+
+
+first time add local to github:
+cd myfolder
+git init
+git add *
+git commint -m 'initial'
+git remote add origin_z2 https://github.com/jamesjian/z2.git
+git push -u origin_z2 master
