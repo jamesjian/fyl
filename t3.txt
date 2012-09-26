@@ -1,0 +1,59 @@
+
+app:
+
+model:
+class author{
+
+}
+class region{
+public static function get_provinces()
+{
+$q = "SELECT * FROM region WHERE level=1 ORDER BY display_order ASC";
+$result = Mysql::get_all($q);
+return $result;
+}
+public static function get_municipalities()
+{
+	$q = "SELECT * FROM region WHERE level=4 ORDER BY display_order ASC";
+$result = Mysql::get_all($q);
+return $result;
+}
+public static function get_cities_by_province_id($province_id)
+{
+$q = "SELECT * FROM region WHERE level=2 ORDER BY display_order ASC";
+$result = Mysql::get_all($q);
+return $result;
+}
+/**
+@param $city_id can be city id or municipality id
+*/
+public static function get_suburbs_by_city_id($city_id)
+{
+$q = "SELECT * FROM region WHERE level=3 AND parent_id=$city_id ORDER BY display_order ASC";
+$result = Mysql::get_all($q);
+return $result;
+}
+
+}
+class book{
+
+}
+class chapter{
+
+}
+class section{
+
+}
+class character{
+
+}
+
+class book_comment{
+
+}
+class chapter_comment{
+
+}
+class section_comment{
+
+}

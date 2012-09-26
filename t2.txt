@@ -1,0 +1,101 @@
+create table region(id int(11) auto_increment primary key,
+name varchar(100), 
+level tinyint(1) comment '1: province, 2. city, 3. suburb, 4.municipality',
+parent_id id(11) comment 'city is the parent of suburbs',
+capital tinyint(1) comment 'guangzhou is a capital, 1: capital, 0: not a capital',
+display_order mediumint(5) comment 'smaller, topper',
+status tinyint(1) 
+)) engine=innodb character set=utf8;
+# first 100,000 authors are for staff, each staff in staff table will have the same id in author table, 
+# the main reason is for comment. otherwise, users are seperated in 2 tables (author, staff)
+
+create table author (id int(11) auto_increment primary key,
+name varchar(100) default '', password varchar(32) default '',
+region_id int(11), keywords varchar(255) default '', image varchar(255) default '',
+date_created datetime, 
+status tinyint(1) default 1 comment '0:register, 1: enabled, 2: disabled by admin'
+)engine=innodb character set=utf8;
+
+#character is the main role in the book, each book has one character, it might be different from the author
+create table book (
+id int(11) auto_increment primary key, 
+author_id int(11) default 0,
+title varchar(255) default '', keywords varchar(255) default '', 
+abstract text, 
+image varchar(255) default '',
+character_name varchar(100) default '',
+character_birthday char(8) comment 'can be only year like '19690000',
+character_region_id int(11), keywords varchar(255) default '',
+character_relationship varchar(50) comment 'relationship between author and character',
+date_created datetime, 
+status tinyint(1) default 1 comment '0: disable by author, 1: enable by author and admin (default), 2: disable by admin',
+comment_status tinyint(1) default 0 comment '1. enable comment, 0. disable comment'
+)engine=innodb character set=utf8;
+
+create table chapter (id int(11) auto_increment primary key, book_id int(11) default 0,
+name varchar(255) default '', keywords varchar(255) default '', 
+abstract text,image varchar(255) default '',
+date_created datetime, 
+status tinyint(1) default 1 comment '0: disable by author, 1: enable by author and admin (default), 2: disable by admin',
+comment_status tinyint(1) default 0 comment '1. enable comment, 0. disable comment'
+)engine=innodb character set=utf8;
+
+create table section (id int(11) auto_increment primary key, chapter_id int(11) default 0,
+name varchar(255) default '', keywords varchar(255) default '', 
+content text,image varchar(255) default '',
+date_created datetime, 
+status tinyint(1) default 1 comment '0: disable by author, 1: enable by author and admin (default), 2: disable by admin',
+comment_status tinyint(1) default 0 comment '1. enable comment, 0. disable comment'
+)engine=innodb character set=utf8;
+
+
+#if it's a new comment, parent id is 0, 
+#if reply to an existing comment, the parent id of this existing comment must be 0, 
+#then the parent id of a new comment is this existing comment id
+# this means only 2 levels of comment are allowed for simplicity.
+
+#the format of comments is like stack overflow
+# book abstract
+  comment 1
+	comment 11
+	comment 12
+	comment 13
+  comment 2
+	comment 21
+	comment 22
+	comment 23
+	comment 24
+  comment 3
+	comment 31
+	comment 32
+	comment 33
+	comment 34
+#
+create table book_comment (id int(11) auto_increment primary key, book_id int(11) default 0,
+user_id int(11), 
+staff_id int(11) default 0 comment 'if a staff update an existing comment, record the staff id', 
+title varchar(255) default '', 
+content text,image varchar(255) default '',
+parent_id int(11) default 0 comment 'if parent id is 0, means it's new comment, not reply an existing comment',
+date_created datetime, 
+status tinyint(1)
+)engine=innodb character set=utf8;
+
+create table chapter_comment (id int(11) auto_increment primary key, chapter_id int(11) default 0,
+user_id int(11), 
+staff_id int(11) default 0 comment 'if a staff update an existing comment, record the staff id', 
+title varchar(255) default '', 
+content text,image varchar(255) default '',
+parent_id int(11) default 0 comment 'if parent id is 0, means it's new comment, not reply an existing comment',
+date_created datetime, status tinyint(1))engine=innodb character set=utf8;
+
+
+creat table section_comment (
+id int(11) auto_increment primary key, 
+section_id int(11) default 0 comment 'even if reply to an existing comment, record section id for query',
+user_id int(11), 
+staff_id int(11) default 0 comment 'if a staff update an existing comment, record the staff id', 
+title varchar(255) default '', 
+content text,image varchar(255) default '',
+parent_id int(11) default 0 comment 'if reply an existing comment, parent id is this existing comment id, else parent id is 0',
+date_created datetime, status tinyint(1))engine=innodb character set=utf8;

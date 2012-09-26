@@ -1,0 +1,486 @@
+controller:
+front:
+class region{
+	public function country(){
+	//all provinces, cities
+	for (all provinces and cities order by display_order){
+		display provinces and cities in these provinces
+	}
+	
+	} 
+	public function show_province() {
+		//everything in a province
+		for (all cities and suburbs in a province order by display_order)) {
+			display cities and suburbs in these cities
+		}
+	} 
+	public function show_city() {
+	//everything in a city
+	for (all suburbs in a city order by display_order) {
+		display suburbs
+	}
+	}
+	public function cities_in_province()
+	{
+		
+	}
+	/**
+	can be city id or municipality id
+	*/
+	public function suburbs_in_city()
+	{
+	
+	}
+}
+
+class author { 
+public function register(){
+if (valid author_name, password, email, city/suburb){
+	App_author::create a author();
+	goto register result page
+} else {
+	display register form;
+}
+public function activate(){
+if (valid activation link) {
+	goto mem home page;
+} else {
+	goto activation fail result page; 
+}
+}
+public function send_activation_link()
+{
+	if (author has logged in) {
+		//by checking session
+		goto mem home page
+	} else {
+		if (valid author name or emailbox) {
+			//by check $_POST
+			if (author is enabled) {
+			goto mem login page;
+			} else {
+			send activation link to author's emailbox;
+			display send_activation_link_result page
+			}
+		} else {
+			display send activation link form;
+		}
+	}
+}
+
+
+public function forgotten_password(){
+	if ($_POST['author_name'] or $_POST['email']) {
+		send new password to author's email box;
+		goto forgotten password result page;
+	} else {
+		display forgotten password form;
+	}
+}
+public function authors_in_country(){
+	$page= page number;
+	$offset=($page-1)*$num_of_records_per_page;
+	$authors = Model_Author::get_authors_in_country($offset,$num_of_records_per_page, orderby);
+	set_view('author_in_country.php');
+	set_action_var($authors);
+
+}
+public function retrieve_in_province(){
+	$page= page number;
+	$offset=($page-1)*$num_of_records_per_page;
+	$authors = Model_Author::get_authors_in_provincer($province_id, $offset,$num_of_records_per_page, orderby);
+	set_view('author_in_province.php');
+	set_action_var($authors);
+} 
+public function retrieve_in_city(){
+	$page= page number;
+	$offset=($page-1)*$num_of_records_per_page;
+	$authors = Model_Author::get_authors_in_city($city_id, $offset,$num_of_records_per_page, orderby);
+	set_view('author_in_city.php');
+	set_action_var($authors);
+} 
+public function retrieve_in_suburb(){
+	$page= page number;
+	$offset=($page-1)*$num_of_records_per_page;
+	$authors = Model_Author::get_authors_in_suburb($suburb_id, $offset,$num_of_records_per_page, orderby);
+	set_view('author_in_suburb.php');
+	set_action_var($authors);
+ } 
+ public function one_author()
+ {
+ author name, region, books, pictures
+ }
+ 
+public function search(){
+   //mainly on region and keywords
+   search authors by (first name+last name), author name, region name, keywords
+
+}
+
+
+}
+
+class book {
+public function retrieve(){
+//all books, order by pinyin or bihua, pagination
+$page = page number;
+$offset = $page*(num of records per page)
+$books = Model_Book::get_records($offset, num_of_records_per_page, order by,direction);
+set_view('list_all.php');
+set_action_var($books);
+set_action_var($page);
+}  
+public function retrieve_in_province(){
+//all books in a province, order by pinyin or bihua, pagination
+$page = page number;
+$offset = $page*(num of records per page)
+$books = Model_Book::get_records_by_province_id($province_id, $offset, num_of_records_per_page, order by,direction);
+set_view('list_in_province.php');
+set_action_var($books);
+set_action_var($page);
+}
+
+public function retrieve_in_city(){
+//all books in a province, order by pinyin or bihua, pagination
+$page = page number;
+$offset = $page*(num of records per page)
+$books = Model_Book::get_records_by_city_id($city_id, $offset, num_of_records_per_page, order by,direction);
+set_view('list_in_city.php');
+set_action_var($books);
+set_action_var($page);
+}
+public function retrieve_in_suburb(){
+//all books in a province, order by pinyin or bihua, pagination
+$page = page number;
+$offset = $page*(num of records per page)
+$books = Model_Book::get_records_by_suburb_id($suburb_id, $offset, num_of_records_per_page, order by,direction);
+set_view('list_in_suburb.php');
+set_action_var($books);
+set_action_var($page);
+}
+public function retrieve_in_author(){
+//all books in an author, order by pinyin or bihua, pagination
+$page = page number;
+$offset = $page*(num of records per page)
+$books = Model_Book::get_records_by_author_id($author_id, $offset, num_of_records_per_page, order by,direction);
+set_view('list_in_author.php');
+set_action_var($books);
+set_action_var($page);
+}
+public function search(){
+//region, keywords, author
+search books by book name, (first name+last name), author name, region name, keywords,
+}  
+public function show(){}  //one book
+$book = Model_Book::get_one_book($book_id);
+set_view('one_book.php');
+set_action_var($book);
+}
+
+class chapter{
+public function retrieve(){} //in one book
+public function show(){} 
+public function search(){} //keyword, and so on
+}
+
+class section{
+public function retrieve(){} // in one chapter
+public function show(){}
+public function search()}{} //keyword and so on
+}
+
+class book_comment{
+public function retrieve(){} // comments in one book, pagination
+public function create()  //create a comment
+public function reply()  //reply a comment
+}
+
+class chapter_comment{
+public function retrieve(){} // comments in one chapter, pagination
+public function create()  //create a comment
+public function reply()  //reply a comment
+}
+
+class section_comment{
+public function retrieve(){} // comments in one section, pagination
+public function create()  //create a comment
+public function reply()  //reply a comment
+}
+
+mem:
+usually extends a parent class
+class mem{
+	
+	public function init()
+	{
+		if (author_has_logged_in) {
+			//go ahead
+		} else {
+			//goto author login page
+		}
+	}
+
+}
+class author{
+public function login(){}
+public function change_password(){}
+public function change_profile(){}
+public function change_status(){}
+public function logout(){}
+}
+class book extends mem{
+	public function create(){
+		if (isset($_POST['title'])) {
+			array($author_id, $title, $abstract, $keywords, $image, $status);
+			App_Book::create_book($arr);
+		} else {
+			//display create book form
+		}
+	}
+	public function update(){}
+	public function retrieve(){
+		Model_Book::get_records_by_author_id($author_id, order by....);
+		set_view('list.php');
+	}
+	public function delete(){
+		$author_id = $_SESSION['author_id'];
+		$book_id = $params['id'];
+		if (App_Book::delete_author_book($author_id, $book_id)) {
+			goto book list page
+		}
+	}
+}
+class chapter{
+public function create(){}
+public function update(){}
+public function retrieve(){}
+public function delete(){}
+public function change_order(){}
+}
+class section{
+public function create(){}
+public function update(){}
+public function retrieve(){}
+public function delete(){}
+public function change_order(){}
+}
+class book_comment{
+public function retrieve(){} // comments in one book, pagination
+public function show(){}
+public function create(){}
+public function reply()  //reply an existing comment
+}
+
+class chapter_comment{
+public function retrieve(){} // comments in one chapter, pagination
+public function show(){}
+public function create(){}
+public function reply()  //reply an existing comment
+}
+
+class section_comment{
+public function retrieve(){} // comments in one section, pagination
+public function show(){}
+public function create(){}
+public function reply()  //reply an existing comment
+}
+admin:
+class admin{
+	public function init()
+	{
+		if (admin_has_logged_in) {
+			//go ahead
+		} else {
+			//goto admin login page
+		}
+	}
+
+}
+class author{
+public function reset_password(){}
+public function retrieve(){}
+public function create(){}
+public function update(){}
+public function delete(){}
+public function search(){}
+}
+class book{
+public function create(){}
+public function retrieve(){}
+public function update(){}
+public function delete(){}
+public function search(){}
+}
+class chapter{
+public function create(){}
+public function retrieve(){}
+public function update(){}
+public function retrieve(){}
+public function delete(){}
+public function change_order(){}
+public function search(){}
+}
+class section{
+public function create(){}
+public function update(){}
+public function retrieve(){}
+public function delete(){}
+public function change_order(){}
+public function search(){}
+}
+class region{
+//implement these methods later, cud manually
+public function create(){}
+public function update(){}
+public function delete(){}
+
+public function list_province(){
+$records = Model_Region::get_provinces();
+set_view('province_list.php');
+set_action_var($records);
+}
+public function list_city(){
+$records = Model_Region::get_cities();
+set_view('city_list.php');
+set_action_var($records);
+}
+public function list_city_by_province_id()
+{
+$province_id = $param[0];
+$records = Model_Region::get_cities_by_province_id($province_id);
+set_view('city_list_by_provinced_id.php');
+set_action_var($records);
+}
+public function list_suburb(){
+$city_id = $param[0];
+$records = Model_Region::get_suburbs();
+set_view('suburb_list.php');
+set_action_var($records);
+}
+
+public function list_suburb_by_province_id()
+{
+$province_id = $param[0];
+$records = Model_Region::get_suburbs_by_province_id($province_id);
+set_view('suburb_list_by_provinced_id.php');
+set_action_var($records);
+}
+
+public function list_suburb_by_city_id()
+{
+$city_id = $param[0];
+$records = Model_Region::get_suburbs_by_city_id($city_id);
+set_view('suburb_list_by_city_id.php');
+set_action_var($records);
+}
+//the smaller the topper
+public function increase_order(){
+
+}
+public function decrease_order(){
+
+}
+public function search(){}
+
+}
+class book_comment{
+public function retrieve(){} // comments in one book, pagination
+public function show(){}
+public function create(){}
+public function update(){}
+public function reply()  //reply an existing comment
+}
+
+class chapter_comment{
+public function retrieve(){} // comments in one chapter, pagination
+public function show(){}
+public function create(){}
+public function update(){}
+public function reply()  //reply an existing comment
+}
+
+class section_comment{
+public function retrieve(){
+// comments in one section, pagination
+$section_id = $params['section_id'];
+$page = $params['page'];
+
+$offset = ($page-1)*num_of_records_per_page;
+$records =  Model_Sectioncomment::get_records($offset, $num_of_records_per_page, order by, direction, 'section_id=$section_id');
+
+} 
+public function show(){
+	$comment_id = $params[0];
+	$comment = Model_Sectioncomment::get_one($comment_id);
+	$section = Model_Section::get_one_by_comment_id($comment_id);
+		set_view('show.php');
+		set_action_var($comment);
+		set_action_var($section);
+	
+}
+public function create(){
+	if (isset($_POST['content'])) {
+		$user_id = $_SESSION['staff_id']; //use staff id as user_id 
+		arr($user_id, $title, $content, $section_id); //parent id=0
+		if (Model_Sectioncomment::create($arr)) {
+				//goto comment list of this section
+		} else {
+		//display create form
+			$section = Model_Section::get_one($section_id);
+			set_view('create_form.php');
+			set_action_var($section);
+	}
+}
+
+public function update(){
+	//admin can update any comment
+	if (isset($_POST['comment id ']) {
+		$staff_id = $_SESSION['staff_id'];//record staff id
+		$arr =($staff_id, $title, $content); //user id will not be changed, because staff is not the original user 
+		if (Model_Sectioncomment::update_by_staff($arr)) {
+				//goto comment list of this section
+		}
+		
+	} else {
+		//display update form
+			$comment_id = $params[0];
+			$comment = Model_Sectioncomment::get_one($comment_id);
+			$section = Model_Section::get_one($comment['section_id']);
+			set_view('update_form.php');
+			set_action_var($section);
+			set_action_var($comment); //existing comment
+	}
+}
+public function reply(){
+	//reply an existing comment
+	if (isset($_POST['existing comment id '] && isset($_POST['content']) {
+		$parent_id = intval($_POST['existing comment id'];
+		$section_id = Model_Sectioncomment::get_section_id_by_comment_id($comment_id);
+		$user_id = $_SESSION['staff_id']; //they are created in both staff and author table
+		$arr =($section_id, $parent_id,$staff_id, $title, $content)  
+		if (Model_Sectioncommnet::create_comment($arr) {
+			//go to comment list of this section
+		}
+		
+	} else {
+		//display reply form
+		$comment_id = $params[0];
+		$comment = Model_Sectioncomment::get_one($comment_id);
+		if ($comment['parent_id'] == 0) {
+		//the second level of comment is allowed
+		$section = Model_Section::get_one($comment['section_id']);
+		set_view('reply_form.php');
+		set_action_var($section);
+		set_action_var($comment); //existing comment
+		} else {
+		//exceed 2 levels, not allowed
+		 set_error_message('this is not a first level comment, can not reply this comment, reply section or first level comment')
+		}
+	}  
+	}
+}
+ 
+ 
+ add a header('Location:' . HTML_ROOT . 'xxx'); method into tool class
+
+

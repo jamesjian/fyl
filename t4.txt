@@ -1,0 +1,110 @@
+view:
+front:
+homepage:
+search bar:
+main menu: 
+regions, authors, books, about us, contact us, register, login, terms&conditions, privacy, faqs
+
+search author name, search book name, search book id, link to comprehensive author and book search page
+list all province, cities
+list latest books, most popular books, latest chapters/sections
+
+region:
+country: all provinces and cities in these provinces order by display order, capital in a province first, then other cities 
+province: list all cities in a province, then list all suburbs under these cities, 
+city: list all suburbs in a city
+
+author:
+register_form: author name, password, email, city/suburb, keywords, 
+register_result: inform author of activation,
+activation_fail: ask to activate again or goto send_activation_link page
+activation_link_form: author name or email box
+send_activation_link_result: ask to activate author
+forgotten_password_form: author name or email box,  
+forgotten_password_result: ask the author to check email
+
+
+author_in_country, author_in_province, author_in_city, author_in_suburb:
+  list author name, book, and so on order by pinyin or bihua, pagination
+ 
+search_author:
+
+
+one_author: name, image and so on. 
+            books of this author
+			related authors (same province/city/suburb or keywords and so on )
+
+
+book:
+book_in_country, book_in_province, book_in_city, book_in_suburb, book_in_author,
+search_book, 
+one_book: title, abstract, chapters in this book, author name, comments on this book
+          other books of same author, related books (same province/city/suburb or keywords and so on )
+
+chapter:
+chapter_in_book, one_chapter, search_chapter
+
+section:
+section_in_chapter, one_section, search_section
+
+comment: (book_comment, chapter_comment, section_comment)
+create_comment, reply_comment, comments (pagination)
+
+mem:
+author: 
+login, change_password, change_profile, change_status, logout
+
+book:
+list: all books in this author
+show:title, abstract, image, keywords, list of all chapters in this book
+create:title, abstract, image, keywords
+update: title, abstract, image, keywords, status
+delete:
+
+chapter:
+list: all chapters in this book, in list has change_order links
+show: title, abstract, image, keywords, list of all sections in this book
+create: title, abstract, image, keywords, 
+update:title, abstract, image, keywords, status
+delete: confirm then delete
+
+section:
+list: all sections in this chapter, in list has change_order links
+show: title, content, image
+create: has chapter id, title, content, image
+update: can change chapter id, title, content, image
+delete: confirm then delete
+ (if move a section to another chapter, update chapter id firstly, then change order)
+ 
+comment:  (book_comment, chapter_comment, section_comment)
+create: has book id or chapter id or section id, title, content
+reply: has original comment id
+list: title, author/user name, date in one book or chapter or section
+
+admin:
+region:
+list, create, update (including change order)
+
+author: 
+list, create, update, reset_password, search, delete
+
+book:
+book_in_country, book_in_province, book_in_city, book_in_suburb, 
+book_in_author, show, search, create, delete, update
+
+
+chapter: 
+chapter_in_one_book, show, create, delete, update
+
+section: 
+section_in_one_chapter, show, create, delete, update
+
+comments:(book_comment, chapter_comment, section_comment)
+create, 
+
+section_comment:
+create:
+reply: section abstract, existing comment content, new title, new content
+list:
+update: section abstract, existing comment content, new title, new content
+show: section abstract,comment title, content, if not exists, "Invalid comment id";
