@@ -31,3 +31,6 @@ git log --pretty=oneline
 git remote -v
 
 git fetch origin
+
+git push origin master
+user/pass
