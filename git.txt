@@ -9,6 +9,8 @@ create t1.php
 git add *.php  (new or modified file)
 git commit -m 'initial version'
 
+//git commit -a -m 'no need to use git add '
+
 //or 
 git clone https://github.com/jamesjian/fyl 0816
 
@@ -16,3 +18,16 @@ git status
 
 press Q if (end) occurs 
 
+
+git diff (for unstaged and staged)
+
+delete file in explorer, will get 'deleted but not staged'
+
+git rm  will get 'delete to be committed'
+
+git log -p -number of items
+git log --pretty=oneline
+
+git remote -v
+
+git fetch origin
