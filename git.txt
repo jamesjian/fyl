@@ -1,0 +1,18 @@
+git
+c:/user/user
+
+git config --global user.name 'james'
+git config --global user.email 'james@james.com'
+cd/temp/0815
+git init
+create t1.php
+git add *.php  (new or modified file)
+git commit -m 'initial version'
+
+//or 
+git clone https://github.com/jamesjian/fyl 0816
+
+git status
+
+press Q if (end) occurs 
+
