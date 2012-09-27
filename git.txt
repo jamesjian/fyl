@@ -43,3 +43,21 @@ git add *
 git commint -m 'initial'
 git remote add origin_z2 https://github.com/jamesjian/z2.git
 git push -u origin_z2 master
+
+git remote show origin  in the repository folder
+
+git tag -a v1.2 -m 'first tag '
+git show v1.2
+push tag to remote:
+git push origin v1.2
+
+branch:
+
+git branch b1
+git checkout b1
+
+or git checkout -b b1
+commit before checkout again
+git checkout master
+git merge b2
+git branch -d b2
