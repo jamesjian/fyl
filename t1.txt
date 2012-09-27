@@ -3,9 +3,9 @@ front:
 class region{
 	public function country(){
 	//all provinces, cities
-	for (all provinces and cities order by display_order){
-		display provinces and cities in these provinces
-	}
+	$provinces = Model_Region::get_active_provinces();
+	set_view('country.php');
+	set_action_var($provinces);
 	
 	} 
 	public function show_province() {

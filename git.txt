@@ -52,7 +52,7 @@ push tag to remote:
 git push origin v1.2
 
 branch:
-
+git branch   show all branches
 git branch b1
 git checkout b1
 

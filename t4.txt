@@ -10,7 +10,13 @@ list all province, cities
 list latest books, most popular books, latest chapters/sections
 
 region:
-country: all provinces and cities in these provinces order by display order, capital in a province first, then other cities 
+
+country.php: all provinces and cities in these provinces order by display order, capital in a province first, then other cities 
+foreach ($provinces as $province_id=>$province){
+echo $province['name'];
+foreach ($province['cities'] as $city_id=>$city_name) {
+echo $city_name;
+	}
 province: list all cities in a province, then list all suburbs under these cities, 
 city: list all suburbs in a city
 

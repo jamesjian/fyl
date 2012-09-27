@@ -1,9 +1,18 @@
+status:
+region: status 1: active, 0: inactive
+
 create table region(id int(11) auto_increment primary key,
 name varchar(100), 
 level tinyint(1) comment '1: province, 2. city, 3. suburb, 4.municipality',
 parent_id id(11) comment 'city is the parent of suburbs',
 capital tinyint(1) comment 'guangzhou is a capital, 1: capital, 0: not a capital',
 display_order mediumint(5) comment 'smaller, topper',
+status tinyint(1) 
+)) engine=innodb character set=utf8;
+create table cache(name varchar(255) primary key,
+value text,
+date_created datetime,
+date_expired datetime,
 status tinyint(1) 
 )) engine=innodb character set=utf8;
 # first 100,000 authors are for staff, each staff in staff table will have the same id in author table, 

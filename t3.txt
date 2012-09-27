@@ -6,6 +6,31 @@ class author{
 
 }
 class region{
+//will store into cache table in the future
+/**
+@return 3d array =array(province_id=>array('name'=>, 'cities'=>array(city_id=>city_name)));
+*/
+public static function get_active_provinces()
+{
+$q = "SELECT * FROM region WHERE level=1 AND status=1 ORDER BY display_order ASC";
+$result = Mysql::get_all($q);
+$arr = array();
+if ($result) {
+	foreach($result as $p) {
+	$province_id = $p['id'];
+	$arr[province_id] = array('name'=>$p['name']);
+		$city_arr = self::get_active_cities_by_province_id(province_id);
+		if ($city_arr) {
+		foreach ($city_arr as $city) {
+			$city_id = $city['id'];
+			$arr[province_id]['cities'][$city_id] = $city['name'];
+		}
+	}
+	}
+	return $arr;
+
+}
+public 
 public static function get_provinces()
 {
 $q = "SELECT * FROM region WHERE level=1 ORDER BY display_order ASC";
@@ -24,9 +49,21 @@ $q = "SELECT * FROM region WHERE level=2 ORDER BY display_order ASC";
 $result = Mysql::get_all($q);
 return $result;
 }
+public static function get_active_cities_by_province_id($province_id)
+{
+$q = "SELECT * FROM region WHERE parent_id=$province_id AND  level=2 AND status=1 ORDER BY display_order ASC";
+$result = Mysql::get_all($q);
+return $result;
+}
 /**
 @param $city_id can be city id or municipality id
 */
+public static function get_active_suburbs_by_city_id($city_id)
+{
+$q = "SELECT * FROM region WHERE status=1 AND level=3 AND parent_id=$city_id ORDER BY display_order ASC";
+$result = Mysql::get_all($q);
+return $result;
+}
 public static function get_suburbs_by_city_id($city_id)
 {
 $q = "SELECT * FROM region WHERE level=3 AND parent_id=$city_id ORDER BY display_order ASC";
