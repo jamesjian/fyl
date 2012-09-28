@@ -61,3 +61,11 @@ commit before checkout again
 git checkout master
 git merge b2
 git branch -d b2
+
+change remote repo
+
+git clone https://github.com/x1.git  folder1
+cd folder1
+git remote set-url https://github.com/x2.git
+git remote -v  //to check remote repo
+git push -u remote master    // use username and password
