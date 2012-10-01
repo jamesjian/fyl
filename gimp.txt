@@ -1,0 +1,8 @@
+resolution: 72 ppi is default and very bad for printing, 100-200 noticeble, >300 is very good
+zoom: left bottom corner %
+coordinate: left top is (0,0), and y axis is to bottom and x axis is to right
+scale: stretched and squashed if arbitrarily
+
+
+draw a line: 
+

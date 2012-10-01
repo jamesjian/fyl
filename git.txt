@@ -28,6 +28,12 @@ git rm  will get 'delete to be committed'
 git log -p -number of items
 git log --pretty=oneline
 
+//remove a file
+del foo.php
+git add . -A
+git commit -m 'remove foo.php'
+
+
 git remote -v
 
 git fetch origin
