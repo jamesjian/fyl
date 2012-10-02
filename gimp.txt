@@ -6,3 +6,21 @@ scale: stretched and squashed if arbitrarily
 
 draw a line: 
 
+image
+resolution
+color channel, filter on channel, channel mask
+layers (a sheaf of transparent papers one on top of the other)
+selection (marching ants)  is represented by a full-fledged grayscale channel, 
+		the dashed line is simply a contour line at the 50%-selected level. 
+
+(tool), (layer, path, channel, undo), (brush, pattern, gradient)
+
+change image mode: image->mode
+rotate, scale
+FLIP: ctr can switch between horizontal and vertical
+ctr+I: invert a selection
+Shift+Q: toggle quickmask
+ctrl+pageup/pagedown: switch between tabs
+shift+f10: open the menu
+ctrl+j or ctrl+shift+j: adapt image size to window size and vice versa
+edit->preferences
