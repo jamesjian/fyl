@@ -47,3 +47,6 @@ ctrl+pageup/pagedown: switch between tabs
 shift+f10: open the menu
 ctrl+j or ctrl+shift+j: adapt image size to window size and vice versa
 edit->preferences
+
+selection: shift: add, ctr: subtract, shift+ctr: intersect
+           shift+alt: move
