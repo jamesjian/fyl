@@ -2,7 +2,28 @@ resolution: 72 ppi is default and very bad for printing, 100-200 noticeble, >300
 zoom: left bottom corner %
 coordinate: left top is (0,0), and y axis is to bottom and x axis is to right
 scale: stretched and squashed if arbitrarily
+alpha value=0, transparent(transparency), value=255, opaque(opacity)
+		255=2 power 8
 
+parasite such as comment
+when open an image, check header of the image first, if not successful, resort to using extension
+new image: only rgb or grayscale
+  we can convert it to indexed by image->mode->indexed
+
+copy screen to gimp: double screen: "print scrn" then "create from clipboard" sometimes copy the middle of 2 screens
+  if copy main screen, use ALT+"PrintScrn", then "create from clipboard"
+
+  make a selection partially transparent:   
+    method1: create a selection, select->float, set opacity, 
+											click anywhere outside the selection( a select tool must be active)
+    method2: create a selection, ctr+x, ctr+v (cut then paste), set opacity, 
+			click anywhere outside the selection( a select tool must be active)
+     			
+rgb/cmy(k), grayscale, indexed
+
+scale/move a selection:
+create a seletion, scale or move,  cut or paste the selection,
+click anywhere outside the selection( a select tool must be active)
 
 draw a line: 
 
@@ -14,6 +35,8 @@ selection (marching ants)  is represented by a full-fledged grayscale channel,
 		the dashed line is simply a contour line at the 50%-selected level. 
 
 (tool), (layer, path, channel, undo), (brush, pattern, gradient)
+
+feather: select->feather->fill radius
 
 change image mode: image->mode
 rotate, scale
